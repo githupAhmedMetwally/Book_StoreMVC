@@ -1,0 +1,99 @@
+﻿@using Models.ViewModels
+@model BookVM
+
+@{
+    ViewBag.PageTitle = "Book Management";
+    ViewBag.CardTitle = "Edit Book";
+}
+
+<div class="card shadow p-4 mb-4">
+    <h2 class="mb-4">@ViewBag.CardTitle</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <form asp-action="Edit" enctype="multipart/form-data">
+                <input type="hidden" asp-for="Book.Id" />
+                <input type="hidden" asp-for="Book.Img" />
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Book.Title" class="form-label"></label>
+                    <input asp-for="Book.Title" class="form-control" />
+                    <span asp-validation-for="Book.Title" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Book.Pages" class="form-label"></label>
+                    <input asp-for="Book.Pages" class="form-control" />
+                    <span asp-validation-for="Book.Pages" class="text-danger"></span>
+                </div>
+                <div class="form-group mb-3">
+                    <label asp-for="Book.NumberOfCopies" class="form-label"></label>
+                    <input asp-for="Book.NumberOfCopies" class="form-control" />
+                    <span asp-validation-for="Book.NumberOfCopies" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Book.ISBN" class="form-label"></label>
+                    <input asp-for="Book.ISBN" class="form-control" />
+                    <span asp-validation-for="Book.ISBN" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Book.AuthorId" class="form-label"></label>
+                    <select asp-for="Book.AuthorId" class="form-select" asp-items="Model.AuthorList">
+                        <option disabled selected>-- Select Author --</option>
+                    </select>
+                    <span asp-validation-for="Book.AuthorId" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Book.PublisherId" class="form-label"></label>
+                    <select asp-for="Book.PublisherId" class="form-select" asp-items="Model.PublisherList">
+                        <option disabled selected>-- Select Publisher --</option>
+                    </select>
+                    <span asp-validation-for="Book.PublisherId" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Book.CategoryId" class="form-label"></label>
+                    <select asp-for="Book.CategoryId" class="form-select" asp-items="Model.CategoryList">
+                        <option disabled selected>-- Select Category --</option>
+                    </select>
+                    <span asp-validation-for="Book.CategoryId" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Book.PublishDate" class="form-label"></label>
+                    <input type="date" asp-for="Book.PublishDate" class="form-control" />
+                    <span asp-validation-for="Book.PublishDate" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Book.Img" class="form-label">Book Cover</label>
+                    <input type="file" name="file" class="form-control" onchange="fileImg(event)" />
+                </div>
+
+                <div class="form-group mb-3">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                    <a asp-action="Index" class="btn btn-secondary ms-2">Back to List</a>
+                </div>
+            </form>
+        </div>
+
+        <div class="col-md-6 d-flex flex-column align-items-center justify-content-start">
+            <h5>Current Book Cover</h5>
+            <img id="img" width="300" height="300" class="img-thumbnail mt-2"
+                 src="~/@Model.Book.Img" alt="Book Image" />
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+    <script>
+        var fileImg = function (event) {
+            var imgHolder = document.getElementById("img");
+            imgHolder.src = URL.createObjectURL(event.target.files[0]);
+        }
+    </script>
+}

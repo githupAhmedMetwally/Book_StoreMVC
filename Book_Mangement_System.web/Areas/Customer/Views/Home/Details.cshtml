@@ -1,0 +1,83 @@
+﻿@using Models.Models
+@model Book
+@{
+    bool alreadyBorrowed = ViewBag.AlreadyBorrowed ?? false;
+}
+
+<form method="post" asp-action="Details">
+    <section class="py-5">
+        <div class="container px-4 px-lg-5 my-5">
+            <div class="row gx-5 align-items-center">
+                <input type="hidden" asp-for="Id" />
+
+                <!-- صورة الكتاب -->
+                <div class="col-md-5 mb-4 mb-md-0">
+                    <div class="text-center">
+                        <img class="img-fluid rounded shadow-sm" src="~/@Model.Img" alt="@Model.Title" style="max-height: 500px; width: 100%; object-fit: cover;">
+                    </div>
+                </div>
+
+                <!-- تفاصيل الكتاب -->
+                <div class="col-md-7">
+                    <h1 class="mb-4" style="font-size: 2.5rem; font-weight: 700;">@Model.Title</h1>
+
+                    <ul class="list-unstyled mb-4" style="font-size: 20px; line-height: 1.8;">
+                        <li><strong>Category:</strong> @Model.Category.Name</li>
+                        <li><strong>Author:</strong> @Model.Author.Name</li>
+                        <li><strong>Publish Date:</strong> @Model.PublishDate.ToShortDateString()</li>
+                        <li><strong>ISBN:</strong> @Model.ISBN</li>
+                        <li><strong>Pages:</strong> @Model.Pages</li>
+                        <li><strong>Available Copies:</strong> @Model.NumberOfCopies</li>
+                    </ul>
+
+                    <div class="d-flex mt-4">
+                        @if (alreadyBorrowed)
+                        {
+                            <button class="btn btn-secondary flex-shrink-0" type="button" disabled>
+                                <i class="bi bi-check2-circle me-1"></i>
+                                Already Borrowed
+                            </button>
+                        }
+                        else if (Model.NumberOfCopies > 0 )
+                        {
+                            if (User.Identity.IsAuthenticated)
+                            {
+                                <button class="btn btn-success btn-lg w-100 borrow-btn" type="submit">
+                                    <i class="bi bi-cart-fill me-2"></i>
+                                    Borrow This Book
+                                </button>
+                            }
+                            else
+                            {
+                                <a class="btn btn-success btn-lg w-100 borrow-btn" href="/Identity/Account/Register">
+                                    <i class="bi bi-cart-fill me-2"></i>
+                                    Borrow This Book
+                                </a>
+                            }
+
+                        }
+                        else
+                        {
+                            <button class="btn btn-secondary btn-lg w-100 borrow-btn" type="button" disabled>
+                                <i class="bi bi-cart-x-fill me-2"></i>
+                                You Can't Borrow This Book
+                            </button>
+                        }
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+</form>
+ 
+<style>
+    .borrow-btn {
+        transition: all 0.3s ease;
+    }
+
+        .borrow-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
+        }
+</style>

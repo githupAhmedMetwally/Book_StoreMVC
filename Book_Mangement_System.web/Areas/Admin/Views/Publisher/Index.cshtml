@@ -1,0 +1,53 @@
+﻿@using Models.Models
+@model IEnumerable<Publisher>
+
+@{
+    ViewBag.PageTitle = "Publisher Management";
+    ViewBag.CardTitle = "All Publishers";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    
+    <a class="btn btn-primary" href="/Admin/Publisher/Create">Create</a>
+</div>
+
+<table class="table table-bordered table-hover text-center">
+    <thead class="table-dark">
+        <tr>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Phone</th>
+            <th>All Books</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Address</td>
+                <td>@item.Phone</td>
+                <td>
+                    @if (item.Books != null && item.Books.Any())
+                    {
+                        <ul class="list-unstyled text-start">
+                            @foreach (var book in item.Books)
+                            {
+                                <li>📘 @book.Title</li>
+                            }
+                        </ul>
+                    }
+                    else
+                    {
+                        <span class="text-muted">No books available</span>
+                    }
+                </td>
+                <td>
+                    <a class="btn btn-sm btn-success me-1" href="/Admin/Publisher/Edit/@item.Id">Edit</a>
+                    <a class="btn btn-sm btn-danger" href="/Admin/Publisher/Delete/@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

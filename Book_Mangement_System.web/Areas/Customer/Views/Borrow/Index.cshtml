@@ -1,0 +1,54 @@
+﻿@using Models.Models
+@model IEnumerable<BookLoans>
+
+@{
+    ViewData["Title"] = "My Borrowed Books";
+}
+
+<div class="container mt-4">
+    <h2 class="text-center text-primary mb-4">📚 My Borrowed Books</h2>
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-info text-center">
+            You haven't borrowed any books yet.
+        </div>
+
+        <div class="text-center mt-3">
+            <a class="btn btn-outline-primary btn-sm" href="/Customer/Home/Index">
+                <i class="bi bi-book"></i> Browse All Books
+            </a>
+        </div>
+    }
+    else
+    {
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover text-center shadow-sm">
+                <thead class="table-primary">
+                    <tr>
+                        <th>📖 Title</th>
+                        <th>📅 Loan Date</th>
+                        <th>⚙️ Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="align-middle">
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="fw-semibold">@item.Book.Title</td>
+                            <td>@item.LoanDate.ToString("dd MMM yyyy")</td>
+                            <td>
+                                <a class="btn btn-outline-success btn-sm me-2" href="/Customer/Borrow/Return/@item.Id">
+                                    <i class="bi bi-arrow-return-left"></i> Return
+                                </a>
+                                <a class="btn btn-outline-primary btn-sm" href="/Customer/Home/Index">
+                                    <i class="bi bi-book"></i> All Books
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>

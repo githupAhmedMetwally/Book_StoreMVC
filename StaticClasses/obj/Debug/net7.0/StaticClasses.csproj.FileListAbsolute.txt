@@ -1,0 +1,12 @@
+C:\Users\haliem\source\repos\Book_Mangement_System\StaticClasses\bin\Debug\net7.0\StaticClasses.deps.json
+C:\Users\haliem\source\repos\Book_Mangement_System\StaticClasses\bin\Debug\net7.0\StaticClasses.dll
+C:\Users\haliem\source\repos\Book_Mangement_System\StaticClasses\bin\Debug\net7.0\StaticClasses.pdb
+C:\Users\haliem\source\repos\Book_Mangement_System\StaticClasses\obj\Debug\net7.0\StaticClasses.csproj.AssemblyReference.cache
+C:\Users\haliem\source\repos\Book_Mangement_System\StaticClasses\obj\Debug\net7.0\StaticClasses.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\haliem\source\repos\Book_Mangement_System\StaticClasses\obj\Debug\net7.0\StaticClasses.AssemblyInfoInputs.cache
+C:\Users\haliem\source\repos\Book_Mangement_System\StaticClasses\obj\Debug\net7.0\StaticClasses.AssemblyInfo.cs
+C:\Users\haliem\source\repos\Book_Mangement_System\StaticClasses\obj\Debug\net7.0\StaticClasses.csproj.CoreCompileInputs.cache
+C:\Users\haliem\source\repos\Book_Mangement_System\StaticClasses\obj\Debug\net7.0\StaticClasses.dll
+C:\Users\haliem\source\repos\Book_Mangement_System\StaticClasses\obj\Debug\net7.0\refint\StaticClasses.dll
+C:\Users\haliem\source\repos\Book_Mangement_System\StaticClasses\obj\Debug\net7.0\StaticClasses.pdb
+C:\Users\haliem\source\repos\Book_Mangement_System\StaticClasses\obj\Debug\net7.0\ref\StaticClasses.dll

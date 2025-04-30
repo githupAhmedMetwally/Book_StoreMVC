@@ -1,0 +1,39 @@
+﻿@using Models.Models
+@model IEnumerable<Category>
+
+@{
+    ViewBag.PageTitle = "Category Management";
+    ViewBag.CardTitle = "All Categories";
+}
+
+<div class="card shadow rounded p-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+       
+        <a class="btn btn-primary" href="/Admin/Category/Create">Create New Category</a>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-hover align-middle">
+            <thead class="table-light">
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th style="width: 150px;">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Name</td>
+                        <td>@item.Description</td>
+                        <td>
+                            <a class="btn btn-success btn-sm me-1" href="/Admin/Category/Edit/@item.Id">Edit</a>
+                            <a class="btn btn-danger btn-sm" href="/Admin/Category/Delete/@item.Id">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
